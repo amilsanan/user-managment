@@ -1,5 +1,6 @@
 const adminCredential = require('../model/adminCredentialModel')
 const bcrypt = require('bcrypt')
+const jwt  = require('jsonwebtoken')
 
 const adminLogin = async (req, res) => {
     let { username, password } = req.body;
@@ -9,7 +10,14 @@ const adminLogin = async (req, res) => {
             console.log("admin Found");
             const validPassword = await bcrypt.compare(password, admin.password);
             if (validPassword) {
-                res.status(201).json(admin);
+                const token = jwt.sign({
+                    username: admin.username
+                },
+                'secret123'
+                )
+
+
+                res.status(201).json({admin,token});
                 console.log("Correct");
             }else{
                 console.log("Password Wrong");

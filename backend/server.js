@@ -14,7 +14,7 @@ db(()=>{
 });
 
 app.use(express.json({limit: '50mb'}));
-app.use('/usersignup',userrouter);
+app.use('/user',userrouter);
 app.use('/admin',adminrouter);
 
 

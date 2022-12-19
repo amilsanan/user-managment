@@ -6,6 +6,7 @@ const userCredential = mongoose.Schema({
     username: String,
     email: String,
     password: String,
+    image: String,
     createdAt:{
         type: Date,
         default: new Date(),
