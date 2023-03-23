@@ -21,7 +21,7 @@ function Login() {
         try {
             await axios.post('/user/userlogin', loginData).then((res) => {
                 let userData = res.data;
-                console.log("==user=>", userData);
+                console.log("==use111r=>", userData);
                 if (userData.token) {
                     console.log("kjhgh");
                     localStorage.setItem('token', userData.token)
@@ -84,3 +84,7 @@ function Login() {
 }
 
 export default Login
+
+
+
+

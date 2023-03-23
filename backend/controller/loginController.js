@@ -3,10 +3,9 @@ const jwt  = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const usersignUp = async (req, res) => {
-    console.log(req.body);
+    console.log('kkkk',req.body);
     let { fname, lname, username, email, password } = req.body;
     password = await bcrypt.hash(password, 10);
-
     const newUser = new UserCredential({
         fname,
         lname,
@@ -15,7 +14,12 @@ const usersignUp = async (req, res) => {
         password
     })
     try {
-        await newUser.save();
+        if(!username&&!fname&&!email){
+            
+            res.json({data:"no user"})
+        }
+        else{
+            await newUser.save();
         console.log("vjhdvchj");
         const token = jwt.sign({
             email: email
@@ -24,6 +28,8 @@ const usersignUp = async (req, res) => {
         )
         console.log("vjhdvchj");
         res.status(201).json({newUser,token});
+        }
+        
     } catch (error) {
         res.status(409).json({ message: error.message })
     }
@@ -32,7 +38,7 @@ const usersignUp = async (req, res) => {
 const userlogin = async (req, res) => {
     console.log(req.body);
     let { email, password } = req.body;
-    // password = await bcrypt.hash(password,10)
+     password = await bcrypt.hash(password,10)
     try {
         const user = await UserCredential.findOne({ email: email });
         console.log("server", user);

@@ -10,12 +10,12 @@ const UserList = () => {
 
     useEffect(() => {
         axios.get('/admin/userDetails').then((res) => {
+            console.log('hello');
             setUserDetails(res.data);
         }).catch((error) => {
             console.log(error.message);
         })
-    }, []);
-    console.log(userDetails);
+    }, [userDetails])
 
     const userDelete = async (id) => {
         try {
@@ -23,7 +23,7 @@ const UserList = () => {
                 console.log(response);
                 if (response) {
                     console.log("deleted");
-                    window.location.reload(false);
+                    // window.location.reload(false);
                 }
             })
         } catch (error) {

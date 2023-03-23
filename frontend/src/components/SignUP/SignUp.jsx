@@ -20,16 +20,17 @@ function SignUp() {
 
     const handleSignUp = async (e) => {
         e.preventDefault();
-        console.log(signUpData);
+        console.log(intialState);
         try {
             await axios.post('/user', signUpData).then((res) => {
-                console.log(res);
+                console.log('jjj',res.data);
                 let userData = res.data;
                 localStorage.setItem('token', userData.token)
                 setIsLoggedin(true)
                 navigate('/home')
             })
         } catch (error) {
+            console.log(error);
             console.log(error.message);
         }
     }
@@ -56,8 +57,7 @@ function SignUp() {
                     <div className='form'>
                         <div class="data">
                             <label>First Name</label>
-                            <input type="text" placeholder='First Name'
-                                value={signUpData.fname} onChange={(e) => setSignupData({ ...signUpData, fname: e.target.value })} /><br /><br />
+                            <input type="text" placeholder='First Name' data-required-error="Enter your first name" data-invalid-error="Invalid characters used. Check your name" value={signUpData.fname} onChange={(e) => setSignupData({ ...signUpData, fname: e.target.value })} /><br /><br />
                         </div>
                         <div class="data">
                             <label>Last Name</label>

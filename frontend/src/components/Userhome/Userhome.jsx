@@ -15,6 +15,8 @@ const Userhome = () => {
   const handleLogout = () => {
     try {
       localStorage.removeItem('token');
+      let noToken = localStorage.getItem('token');
+      console.log('mm===.',noToken);
       navigate('/')
     } catch (error) {
       console.log(error.message);
@@ -46,7 +48,7 @@ const Userhome = () => {
           await axios.get('/user/editProfilePic?userid=' + id +"&&imageurl="+imageurl).then((res)=>{
             console.log(res);
             window.location.reload(false);
-            // navigate('/home')
+            navigate('/home')
           })
         }
       }

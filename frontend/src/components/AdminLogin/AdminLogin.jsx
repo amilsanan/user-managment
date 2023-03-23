@@ -18,8 +18,11 @@ const AdminLogin = () => {
     const [loginCredential, setLoginCredential] = useState(intialState)
 
     const handleLogin = async (e) => {
+        console.log('eee==>',e);
+        console.log(intialState);
         e.preventDefault();
         console.log("isLogged in", isLoggedin);
+        console.log(loginCredential);
         try {
             await axios.post('/admin/adminlogin', loginCredential).then((response) => {
                 let userData = response.data;

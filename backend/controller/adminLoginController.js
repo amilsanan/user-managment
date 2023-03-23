@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt')
 const jwt  = require('jsonwebtoken')
 
 const adminLogin = async (req, res) => {
+    console.log('hi1235',req.body);
     let { username, password } = req.body;
+    
     try {
         const admin = await adminCredential.findOne({ username });
         if (admin) {

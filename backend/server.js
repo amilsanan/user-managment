@@ -3,7 +3,7 @@ const app = express();
 const db = require('./config/db');
 const adminrouter = require('./router/adminRouter');
 const userrouter = require('./router/userRouter');
-const PORT = 5000;
+const PORT = 5001;
 
 db(()=>{
     try {
@@ -18,4 +18,4 @@ app.use('/user',userrouter);
 app.use('/admin',adminrouter);
 
 
-app.listen(PORT,()=> console.log("server Started @ 5000 ❤❤❤❤"));
+app.listen(PORT,()=> console.log("server Started @ 5000 "));
